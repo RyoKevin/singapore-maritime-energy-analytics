@@ -1,0 +1,448 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import pandas as pd
+
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "analysis" / "output"
+DOCS = ROOT / "docs"
+
+
+def round_list(values: pd.Series, digits: int = 2) -> list[float | None]:
+    return [None if pd.isna(v) else round(float(v), digits) for v in values]
+
+
+def build_payload() -> dict[str, object]:
+    annual = pd.read_csv(OUT / "annual_key_metrics.csv", encoding="utf-8-sig")
+    annual = annual[(annual["complete_year"]) & (annual["year"].between(1995, 2025))].copy()
+    base = annual[annual["year"] == 1995].iloc[0]
+
+    port_index = {
+        "years": annual["year"].astype(int).tolist(),
+        "series": {
+            "Cargo throughput": round_list(annual["cargo_throughput"] / base["cargo_throughput"] * 100),
+            "Container throughput": round_list(annual["container_throughput"] / base["container_throughput"] * 100),
+            "Bunker sales": round_list(annual["bunker_sales"] / base["bunker_sales"] * 100),
+            "Vessel calls": round_list(annual["vessel_calls"] / base["vessel_calls"] * 100),
+            "Vessel gross tonnage": round_list(annual["vessel_gross_tonnage"] / base["vessel_gross_tonnage"] * 100),
+        },
+    }
+
+    brent = pd.read_csv(OUT / "twelve_day_vs_2026_brent_windows.csv", encoding="utf-8-sig")
+    brent_compare = {
+        "labels": ["Pre-war", "Event / shock", "Post / prolonged"],
+        "series": {
+            "2025 Twelve-Day War": round_list(
+                brent[brent["window"].str.startswith("twelve")]["avg_change_vs_own_pre_pct"]
+            ),
+            "2026 Hormuz crisis": round_list(
+                brent[brent["window"].str.startswith("war_2026")]["avg_change_vs_own_pre_pct"]
+            ),
+        },
+    }
+
+    exposure = pd.read_csv(OUT / "iran_hormuz_exposure_annual_shares.csv", encoding="utf-8-sig")
+    exposure = exposure[exposure["year"].between(1995, 2025)].copy()
+    hormuz_exposure = {
+        "years": exposure["year"].astype(int).tolist(),
+        "series": {
+            "Gulf sources": round_list(exposure["gulf_total_ex_oman_yemen"]),
+            "Non-Gulf substitutes": round_list(exposure["non_gulf_substitutes"]),
+            "Direct Iran": round_list(exposure["direct_iran"]),
+        },
+    }
+
+    q1 = pd.read_csv(OUT / "iran_hormuz_exposure_q1_shares.csv", encoding="utf-8-sig").set_index("year")
+    q1_cols = [
+        ("Hormuz core", "hormuz_core_no_large_bypass"),
+        ("Saudi/UAE", "gulf_with_bypass_capacity"),
+        ("SE Asia/Oceania", "regional_se_asia_oceania"),
+        ("Asian refinery trade", "asian_refinery_trade"),
+        ("Americas", "americas"),
+    ]
+    q1_reallocation = {
+        "labels": [label for label, _ in q1_cols],
+        "series": {
+            "2025Q1": [round(float(q1.loc[2025, col]), 2) for _, col in q1_cols],
+            "2026Q1": [round(float(q1.loc[2026, col]), 2) for _, col in q1_cols],
+        },
+    }
+
+    recent = pd.read_csv(OUT / "iran_hormuz_exposure_recent_monthly.csv", encoding="utf-8-sig")
+    monthly_exposure = {
+        "months": recent["month"].tolist(),
+        "series": {
+            "Gulf sources": round_list(recent["gulf_total_ex_oman_yemen"]),
+            "Saudi/UAE": round_list(recent["gulf_with_bypass_capacity"]),
+            "Non-Gulf substitutes": round_list(recent["non_gulf_substitutes"]),
+        },
+    }
+
+    return {
+        "portIndex": port_index,
+        "brentCompare": brent_compare,
+        "hormuzExposure": hormuz_exposure,
+        "q1Reallocation": q1_reallocation,
+        "monthlyExposure": monthly_exposure,
+        "metrics": {
+            "vesselGrossTonnageGrowth": 485.5,
+            "vesselCallsGrowth": 21.8,
+            "directIranAfter2019": 0.0,
+            "gulfShare2025": 36.0,
+            "gulfShare2026Q1": 38.8,
+            "brentShock2025": 16.3,
+            "brentShock2026": 70.8,
+        },
+    }
+
+
+def html_template(payload: dict[str, object]) -> str:
+    data_json = json.dumps(payload, ensure_ascii=False)
+    return f"""<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Singapore Maritime Energy Interactive Story</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    :root {{
+      --ink: #132238;
+      --muted: #5b677a;
+      --line: #d8e0ea;
+      --panel: #ffffff;
+      --bg: #f5f7fa;
+      --blue: #1f5eff;
+      --teal: #0f9f8f;
+      --orange: #e56b2f;
+    }}
+    * {{ box-sizing: border-box; }}
+    body {{
+      margin: 0;
+      font-family: Inter, Arial, "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }}
+    header {{
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(180deg, rgba(11, 31, 58, 0.18), rgba(11, 31, 58, 0.92)),
+        url("https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1800&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 8vh 7vw;
+    }}
+    .hero {{ max-width: 1080px; }}
+    .eyebrow {{
+      font-size: 13px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 14px;
+    }}
+    h1 {{
+      font-size: clamp(36px, 6vw, 78px);
+      line-height: 1.02;
+      margin: 0 0 18px;
+      max-width: 980px;
+      letter-spacing: 0;
+    }}
+    .lede {{
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.55;
+      max-width: 880px;
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+    }}
+    nav {{
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px 7vw;
+      background: rgba(245, 247, 250, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }}
+    nav a {{
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 6px;
+    }}
+    main {{ padding: 34px 7vw 64px; }}
+    section {{
+      max-width: 1180px;
+      margin: 0 auto 56px;
+    }}
+    .kpis {{
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }}
+    .kpi {{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 112px;
+    }}
+    .kpi strong {{
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: var(--blue);
+    }}
+    .kpi span {{
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }}
+    .section-head {{
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 16px;
+    }}
+    h2 {{
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.08;
+      margin: 0;
+      letter-spacing: 0;
+    }}
+    .note {{
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }}
+    .chart-panel {{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }}
+    .chart {{
+      width: 100%;
+      height: min(62vh, 560px);
+      min-height: 380px;
+    }}
+    .split {{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+    }}
+    .callout {{
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--teal);
+      background: #edf7f6;
+      line-height: 1.58;
+    }}
+    footer {{
+      padding: 28px 7vw 42px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: white;
+    }}
+    footer a {{ color: var(--blue); }}
+    @media (max-width: 900px) {{
+      header {{ min-height: 84vh; padding: 7vh 6vw; }}
+      nav {{ padding: 10px 5vw; overflow-x: auto; flex-wrap: nowrap; }}
+      main {{ padding: 26px 5vw 48px; }}
+      .kpis {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+      .section-head, .split {{ grid-template-columns: 1fr; }}
+      .chart {{ min-height: 330px; }}
+    }}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="eyebrow">Data Story · Singapore Maritime Energy</div>
+      <h1>Singapore is not just moving more cargo. It is absorbing energy risk.</h1>
+      <p class="lede">A 30-year port dataset shows Singapore shifting from volume growth toward larger vessels, bunker fuel services, and supply-chain resilience under Iran/Hormuz shocks.</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#port">Port system</a>
+    <a href="#shock">War shocks</a>
+    <a href="#hormuz">Hormuz exposure</a>
+    <a href="#reallocation">2026Q1 reallocation</a>
+    <a href="#takeaway">Takeaway</a>
+  </nav>
+
+  <main>
+    <section class="kpis" aria-label="Key metrics">
+      <div class="kpi"><strong>+485.5%</strong><span>Vessel gross tonnage growth, 1995-2025</span></div>
+      <div class="kpi"><strong>+21.8%</strong><span>Vessel calls growth, same period</span></div>
+      <div class="kpi"><strong>0%</strong><span>Direct Iran oil-import share after 2019</span></div>
+      <div class="kpi"><strong>36.0%</strong><span>Gulf oil-import share in 2025</span></div>
+      <div class="kpi"><strong>38.8%</strong><span>Gulf oil-import share in 2026Q1</span></div>
+    </section>
+
+    <section id="port">
+      <div class="section-head">
+        <h2>The port story is about scale per ship.</h2>
+        <p class="note">Vessel calls rose slowly, while gross tonnage, container throughput, and bunker sales climbed much faster. Singapore's role becomes clearer when the port is treated as an energy and large-vessel service system.</p>
+      </div>
+      <div class="chart-panel"><div id="portChart" class="chart"></div></div>
+      <div class="callout">Interpretation: the gap between vessel calls and gross tonnage is the project’s first resume-ready insight: Singapore is serving larger ships and more energy-intensive shipping activity, not simply more arrivals.</div>
+    </section>
+
+    <section id="shock">
+      <div class="section-head">
+        <h2>The 2026 Hormuz crisis is a different class of shock.</h2>
+        <p class="note">The 2025 Twelve-Day War raised Brent briefly. The 2026 crisis produced a larger, persistent shock because the channel itself became uncertain.</p>
+      </div>
+      <div class="chart-panel"><div id="brentChart" class="chart"></div></div>
+    </section>
+
+    <section id="hormuz">
+      <div class="section-head">
+        <h2>Iran is the switch, not the supplier.</h2>
+        <p class="note">Direct imports from Iran are essentially gone after 2019. The exposure is indirect: Gulf-origin oil and refined products depend on a chokepoint whose risk is shaped by Iran.</p>
+      </div>
+      <div class="chart-panel"><div id="hormuzChart" class="chart"></div></div>
+      <div class="callout">The long-run trend shows diversification away from Gulf dominance. But diversification does not remove chokepoint risk; it changes how the risk is redistributed through suppliers.</div>
+    </section>
+
+    <section id="reallocation">
+      <div class="section-head">
+        <h2>In 2026Q1, exposure moved toward Saudi/UAE.</h2>
+        <p class="note">When the shock hit, Singapore did not simply abandon the Gulf. The share from Saudi/UAE rose, while Americas and Asian refinery-trade shares fell.</p>
+      </div>
+      <div class="split">
+        <div class="chart-panel"><div id="q1Chart" class="chart"></div></div>
+        <div class="chart-panel"><div id="monthlyChart" class="chart"></div></div>
+      </div>
+    </section>
+
+    <section id="takeaway">
+      <div class="section-head">
+        <h2>The new story for a resume.</h2>
+        <p class="note">Singapore is a risk redistribution hub. It turns Gulf disruption into source reallocation, bunker fuel cost pressure, and changes in shipping service demand.</p>
+      </div>
+      <div class="callout">Resume angle: built an interactive maritime-energy analytics project that quantifies how geopolitical shocks propagate from oil chokepoints into port activity, bunker fuel demand, and Singapore’s import-source structure.</div>
+    </section>
+  </main>
+
+  <footer>
+    Data sources: Singapore data.gov.sg, Brent price data in the project package, FetchSeries/IMF PortWatch regional context, and EIA Strait of Hormuz background. See <a href="../README.md">README</a> for reproducibility.
+  </footer>
+
+  <script>
+    const DATA = {data_json};
+    const palette = ["#2454A6", "#D95F02", "#1B9E77", "#7570B3", "#E6AB02", "#66A61E"];
+
+    function initChart(id, option) {{
+      const chart = echarts.init(document.getElementById(id));
+      chart.setOption(option);
+      window.addEventListener("resize", () => chart.resize());
+      return chart;
+    }}
+
+    function lineSeries(seriesMap, smooth = false, area = false) {{
+      return Object.entries(seriesMap).map(([name, data], index) => ({{
+        name,
+        type: "line",
+        smooth,
+        symbolSize: 6,
+        lineStyle: {{ width: 3 }},
+        areaStyle: area ? {{ opacity: 0.12 }} : undefined,
+        data,
+        color: palette[index % palette.length]
+      }}));
+    }}
+
+    const baseGrid = {{ left: 56, right: 24, top: 72, bottom: 54 }};
+
+    initChart("portChart", {{
+      color: palette,
+      tooltip: {{ trigger: "axis" }},
+      legend: {{ top: 12 }},
+      grid: baseGrid,
+      xAxis: {{ type: "category", data: DATA.portIndex.years }},
+      yAxis: {{ type: "value", name: "Index, 1995=100" }},
+      series: lineSeries(DATA.portIndex.series, true, false)
+    }});
+
+    initChart("brentChart", {{
+      color: ["#2454A6", "#D95F02"],
+      tooltip: {{ trigger: "axis", valueFormatter: v => `${{v}}%` }},
+      legend: {{ top: 12 }},
+      grid: baseGrid,
+      xAxis: {{ type: "category", data: DATA.brentCompare.labels }},
+      yAxis: {{ type: "value", name: "Change vs pre-war avg (%)" }},
+      series: Object.entries(DATA.brentCompare.series).map(([name, data]) => ({{
+        name,
+        type: "bar",
+        barMaxWidth: 46,
+        data,
+        label: {{ show: true, position: "top", formatter: "{{c}}%" }}
+      }}))
+    }});
+
+    initChart("hormuzChart", {{
+      color: ["#D95F02", "#1B9E77", "#7570B3"],
+      tooltip: {{ trigger: "axis", valueFormatter: v => `${{v}}%` }},
+      legend: {{ top: 12 }},
+      grid: baseGrid,
+      xAxis: {{ type: "category", data: DATA.hormuzExposure.years }},
+      yAxis: {{ type: "value", name: "Oil-import share (%)" }},
+      series: lineSeries(DATA.hormuzExposure.series, true, true)
+    }});
+
+    initChart("q1Chart", {{
+      color: ["#2454A6", "#D95F02"],
+      tooltip: {{ trigger: "axis", valueFormatter: v => `${{v}}%` }},
+      legend: {{ top: 12 }},
+      grid: {{ left: 56, right: 16, top: 72, bottom: 74 }},
+      xAxis: {{ type: "category", data: DATA.q1Reallocation.labels, axisLabel: {{ interval: 0, rotate: 18 }} }},
+      yAxis: {{ type: "value", name: "Share (%)" }},
+      series: Object.entries(DATA.q1Reallocation.series).map(([name, data]) => ({{
+        name,
+        type: "bar",
+        barMaxWidth: 38,
+        data
+      }}))
+    }});
+
+    initChart("monthlyChart", {{
+      color: ["#D95F02", "#E6AB02", "#1B9E77"],
+      tooltip: {{ trigger: "axis", valueFormatter: v => `${{v}}%` }},
+      legend: {{ top: 12 }},
+      grid: {{ left: 56, right: 16, top: 72, bottom: 64 }},
+      xAxis: {{ type: "category", data: DATA.monthlyExposure.months, axisLabel: {{ rotate: 30 }} }},
+      yAxis: {{ type: "value", name: "Share (%)" }},
+      series: lineSeries(DATA.monthlyExposure.series, true, false)
+    }});
+  </script>
+</body>
+</html>
+"""
+
+
+def main() -> None:
+    DOCS.mkdir(parents=True, exist_ok=True)
+    payload = build_payload()
+    (DOCS / "interactive.html").write_text(html_template(payload), encoding="utf-8")
+    print("Generated docs/interactive.html")
+
+
+if __name__ == "__main__":
+    main()

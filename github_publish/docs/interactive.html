@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Singapore Maritime Energy Interactive Story</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    :root {
+      --ink: #132238;
+      --muted: #5b677a;
+      --line: #d8e0ea;
+      --panel: #ffffff;
+      --bg: #f5f7fa;
+      --blue: #1f5eff;
+      --teal: #0f9f8f;
+      --orange: #e56b2f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    header {
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(180deg, rgba(11, 31, 58, 0.18), rgba(11, 31, 58, 0.92)),
+        url("https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1800&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 8vh 7vw;
+    }
+    .hero { max-width: 1080px; }
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: clamp(36px, 6vw, 78px);
+      line-height: 1.02;
+      margin: 0 0 18px;
+      max-width: 980px;
+      letter-spacing: 0;
+    }
+    .lede {
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.55;
+      max-width: 880px;
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px 7vw;
+      background: rgba(245, 247, 250, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 6px;
+    }
+    main { padding: 34px 7vw 64px; }
+    section {
+      max-width: 1180px;
+      margin: 0 auto 56px;
+    }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .kpi {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 112px;
+    }
+    .kpi strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: var(--blue);
+    }
+    .kpi span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.08;
+      margin: 0;
+      letter-spacing: 0;
+    }
+    .note {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .chart-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .chart {
+      width: 100%;
+      height: min(62vh, 560px);
+      min-height: 380px;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+    .callout {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--teal);
+      background: #edf7f6;
+      line-height: 1.58;
+    }
+    footer {
+      padding: 28px 7vw 42px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: white;
+    }
+    footer a { color: var(--blue); }
+    @media (max-width: 900px) {
+      header { min-height: 84vh; padding: 7vh 6vw; }
+      nav { padding: 10px 5vw; overflow-x: auto; flex-wrap: nowrap; }
+      main { padding: 26px 5vw 48px; }
+      .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-head, .split { grid-template-columns: 1fr; }
+      .chart { min-height: 330px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="eyebrow">Data Story · Singapore Maritime Energy</div>
+      <h1>Singapore is not just moving more cargo. It is absorbing energy risk.</h1>
+      <p class="lede">A 30-year port dataset shows Singapore shifting from volume growth toward larger vessels, bunker fuel services, and supply-chain resilience under Iran/Hormuz shocks.</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#port">Port system</a>
+    <a href="#shock">War shocks</a>
+    <a href="#hormuz">Hormuz exposure</a>
+    <a href="#reallocation">2026Q1 reallocation</a>
+    <a href="#takeaway">Takeaway</a>
+  </nav>
+
+  <main>
+    <section class="kpis" aria-label="Key metrics">
+      <div class="kpi"><strong>+485.5%</strong><span>Vessel gross tonnage growth, 1995-2025</span></div>
+      <div class="kpi"><strong>+21.8%</strong><span>Vessel calls growth, same period</span></div>
+      <div class="kpi"><strong>0%</strong><span>Direct Iran oil-import share after 2019</span></div>
+      <div class="kpi"><strong>36.0%</strong><span>Gulf oil-import share in 2025</span></div>
+      <div class="kpi"><strong>38.8%</strong><span>Gulf oil-import share in 2026Q1</span></div>
+    </section>
+
+    <section id="port">
+      <div class="section-head">
+        <h2>The port story is about scale per ship.</h2>
+        <p class="note">Vessel calls rose slowly, while gross tonnage, container throughput, and bunker sales climbed much faster. Singapore's role becomes clearer when the port is treated as an energy and large-vessel service system.</p>
+      </div>
+      <div class="chart-panel"><div id="portChart" class="chart"></div></div>
+      <div class="callout">Interpretation: the gap between vessel calls and gross tonnage is the project’s first resume-ready insight: Singapore is serving larger ships and more energy-intensive shipping activity, not simply more arrivals.</div>
+    </section>
+
+    <section id="shock">
+      <div class="section-head">
+        <h2>The 2026 Hormuz crisis is a different class of shock.</h2>
+        <p class="note">The 2025 Twelve-Day War raised Brent briefly. The 2026 crisis produced a larger, persistent shock because the channel itself became uncertain.</p>
+      </div>
+      <div class="chart-panel"><div id="brentChart" class="chart"></div></div>
+    </section>
+
+    <section id="hormuz">
+      <div class="section-head">
+        <h2>Iran is the switch, not the supplier.</h2>
+        <p class="note">Direct imports from Iran are essentially gone after 2019. The exposure is indirect: Gulf-origin oil and refined products depend on a chokepoint whose risk is shaped by Iran.</p>
+      </div>
+      <div class="chart-panel"><div id="hormuzChart" class="chart"></div></div>
+      <div class="callout">The long-run trend shows diversification away from Gulf dominance. But diversification does not remove chokepoint risk; it changes how the risk is redistributed through suppliers.</div>
+    </section>
+
+    <section id="reallocation">
+      <div class="section-head">
+        <h2>In 2026Q1, exposure moved toward Saudi/UAE.</h2>
+        <p class="note">When the shock hit, Singapore did not simply abandon the Gulf. The share from Saudi/UAE rose, while Americas and Asian refinery-trade shares fell.</p>
+      </div>
+      <div class="split">
+        <div class="chart-panel"><div id="q1Chart" class="chart"></div></div>
+        <div class="chart-panel"><div id="monthlyChart" class="chart"></div></div>
+      </div>
+    </section>
+
+    <section id="takeaway">
+      <div class="section-head">
+        <h2>The new story for a resume.</h2>
+        <p class="note">Singapore is a risk redistribution hub. It turns Gulf disruption into source reallocation, bunker fuel cost pressure, and changes in shipping service demand.</p>
+      </div>
+      <div class="callout">Resume angle: built an interactive maritime-energy analytics project that quantifies how geopolitical shocks propagate from oil chokepoints into port activity, bunker fuel demand, and Singapore’s import-source structure.</div>
+    </section>
+  </main>
+
+  <footer>
+    Data sources: Singapore data.gov.sg, Brent price data in the project package, FetchSeries/IMF PortWatch regional context, and EIA Strait of Hormuz background. See <a href="../README.md">README</a> for reproducibility.
+  </footer>
+
+  <script>
+    const DATA = {"portIndex": {"years": [1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": {"Cargo throughput": [100.0, 102.84, 107.21, 102.24, 106.68, 106.58, 102.62, 109.71, 113.82, 128.79, 138.56, 146.82, 158.31, 168.72, 154.61, 164.77, 173.88, 176.12, 183.61, 190.28, 188.5, 194.22, 205.47, 206.27, 205.09, 193.38, 196.29, 189.28, 193.79, 203.91, 201.11], "Container throughput": [100.0, 109.27, 119.33, 127.77, 134.6, 144.24, 131.45, 143.01, 155.41, 180.05, 195.78, 209.29, 235.82, 252.56, 218.36, 240.01, 252.72, 267.17, 275.02, 285.91, 261.03, 260.88, 284.2, 308.96, 314.5, 311.85, 317.16, 314.79, 329.33, 347.15, 377.04], "Bunker sales": [100.0, 96.85, 96.86, 103.29, 108.02, 106.64, 116.37, 114.91, 118.98, 134.75, 145.68, 162.27, 180.37, 199.76, 208.05, 233.59, 246.74, 244.07, 244.05, 242.53, 258.19, 277.97, 289.53, 284.74, 271.39, 284.94, 286.12, 273.86, 296.32, 314.03, 324.63], "Vessel calls": [100.0, 112.21, 104.56, 110.09, 112.42, 115.1, 116.92, 114.73, 109.85, 107.57, 105.69, 106.8, 107.65, 112.69, 110.78, 111.63, 113.82, 115.81, 122.94, 121.9, 123.05, 127.86, 131.08, 127.78, 126.9, 95.67, 83.6, 95.9, 115.45, 118.05, 121.84], "Vessel gross tonnage": [100.0, 106.85, 127.83, 132.96, 138.73, 145.07, 149.81, 152.15, 154.85, 162.66, 178.5, 203.75, 230.22, 267.17, 286.61, 314.78, 353.88, 383.18, 411.21, 432.82, 465.74, 487.94, 513.98, 514.56, 533.15, 470.6, 460.18, 489.17, 570.21, 574.02, 585.54]}}, "brentCompare": {"labels": ["Pre-war", "Event / shock", "Post / prolonged"], "series": {"2025 Twelve-Day War": [0.0, 16.26, 7.65], "2026 Hormuz crisis": [0.0, 50.14, 70.81]}}, "hormuzExposure": {"years": [1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": {"Gulf sources": [68.62, 75.12, 75.01, 70.32, 66.49, 58.97, 54.1, 55.79, 52.86, 51.84, 52.87, 45.17, 41.32, 39.24, 32.43, 29.01, 31.46, 35.02, 33.97, 35.86, 33.0, 35.45, 34.15, 36.19, 34.8, 28.7, 29.93, 25.99, 28.26, 29.2, 36.01], "Non-Gulf substitutes": [22.57, 19.42, 19.39, 22.67, 23.79, 29.61, 31.11, 31.04, 36.16, 37.92, 37.61, 47.46, 48.36, 51.17, 57.37, 60.71, 55.2, 54.17, 58.88, 58.97, 58.44, 56.47, 57.07, 55.61, 59.9, 66.39, 63.36, 69.48, 67.25, 65.44, 59.15], "Direct Iran": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.56, 1.74, 2.45, 2.73, 4.36, 1.63, 0.0, 0.0, 0.0, 1.21, 1.15, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}}, "q1Reallocation": {"labels": ["Hormuz core", "Saudi/UAE", "SE Asia/Oceania", "Asian refinery trade", "Americas"], "series": {"2025Q1": [9.72, 19.89, 21.12, 29.14, 16.31], "2026Q1": [8.96, 29.85, 22.26, 26.58, 5.46]}}, "monthlyExposure": {"months": ["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"], "series": {"Gulf sources": [26.99, 30.24, 31.72, 31.8, 36.71, 42.15, 42.12, 35.83, 37.9, 39.55, 42.21, 38.86, 37.7, 45.01, 35.47], "Saudi/UAE": [19.11, 22.32, 18.3, 21.68, 25.58, 28.92, 27.3, 27.19, 28.91, 29.39, 35.37, 26.46, 28.94, 35.01, 27.07], "Non-Gulf substitutes": [66.87, 66.55, 66.29, 64.39, 58.17, 55.13, 53.12, 60.98, 52.75, 54.64, 52.66, 54.56, 54.26, 48.54, 58.33]}}, "metrics": {"vesselGrossTonnageGrowth": 485.5, "vesselCallsGrowth": 21.8, "directIranAfter2019": 0.0, "gulfShare2025": 36.0, "gulfShare2026Q1": 38.8, "brentShock2025": 16.3, "brentShock2026": 70.8}};
+    const palette = ["#2454A6", "#D95F02", "#1B9E77", "#7570B3", "#E6AB02", "#66A61E"];
+
+    function initChart(id, option) {
+      const chart = echarts.init(document.getElementById(id));
+      chart.setOption(option);
+      window.addEventListener("resize", () => chart.resize());
+      return chart;
+    }
+
+    function lineSeries(seriesMap, smooth = false, area = false) {
+      return Object.entries(seriesMap).map(([name, data], index) => ({
+        name,
+        type: "line",
+        smooth,
+        symbolSize: 6,
+        lineStyle: { width: 3 },
+        areaStyle: area ? { opacity: 0.12 } : undefined,
+        data,
+        color: palette[index % palette.length]
+      }));
+    }
+
+    const baseGrid = { left: 56, right: 24, top: 72, bottom: 54 };
+
+    initChart("portChart", {
+      color: palette,
+      tooltip: { trigger: "axis" },
+      legend: { top: 12 },
+      grid: baseGrid,
+      xAxis: { type: "category", data: DATA.portIndex.years },
+      yAxis: { type: "value", name: "Index, 1995=100" },
+      series: lineSeries(DATA.portIndex.series, true, false)
+    });
+
+    initChart("brentChart", {
+      color: ["#2454A6", "#D95F02"],
+      tooltip: { trigger: "axis", valueFormatter: v => `${v}%` },
+      legend: { top: 12 },
+      grid: baseGrid,
+      xAxis: { type: "category", data: DATA.brentCompare.labels },
+      yAxis: { type: "value", name: "Change vs pre-war avg (%)" },
+      series: Object.entries(DATA.brentCompare.series).map(([name, data]) => ({
+        name,
+        type: "bar",
+        barMaxWidth: 46,
+        data,
+        label: { show: true, position: "top", formatter: "{c}%" }
+      }))
+    });
+
+    initChart("hormuzChart", {
+      color: ["#D95F02", "#1B9E77", "#7570B3"],
+      tooltip: { trigger: "axis", valueFormatter: v => `${v}%` },
+      legend: { top: 12 },
+      grid: baseGrid,
+      xAxis: { type: "category", data: DATA.hormuzExposure.years },
+      yAxis: { type: "value", name: "Oil-import share (%)" },
+      series: lineSeries(DATA.hormuzExposure.series, true, true)
+    });
+
+    initChart("q1Chart", {
+      color: ["#2454A6", "#D95F02"],
+      tooltip: { trigger: "axis", valueFormatter: v => `${v}%` },
+      legend: { top: 12 },
+      grid: { left: 56, right: 16, top: 72, bottom: 74 },
+      xAxis: { type: "category", data: DATA.q1Reallocation.labels, axisLabel: { interval: 0, rotate: 18 } },
+      yAxis: { type: "value", name: "Share (%)" },
+      series: Object.entries(DATA.q1Reallocation.series).map(([name, data]) => ({
+        name,
+        type: "bar",
+        barMaxWidth: 38,
+        data
+      }))
+    });
+
+    initChart("monthlyChart", {
+      color: ["#D95F02", "#E6AB02", "#1B9E77"],
+      tooltip: { trigger: "axis", valueFormatter: v => `${v}%` },
+      legend: { top: 12 },
+      grid: { left: 56, right: 16, top: 72, bottom: 64 },
+      xAxis: { type: "category", data: DATA.monthlyExposure.months, axisLabel: { rotate: 30 } },
+      yAxis: { type: "value", name: "Share (%)" },
+      series: lineSeries(DATA.monthlyExposure.series, true, false)
+    });
+  </script>
+</body>
+</html>

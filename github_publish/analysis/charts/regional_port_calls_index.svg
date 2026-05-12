@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+<rect width="100%" height="100%" fill="white"/>
+<text x="490.0" y="32.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#222">Regional port-call index from FetchSeries/PortWatch, 2019=100</text>
+<line x1="80" y1="490" x2="770" y2="490" stroke="#333"/>
+<line x1="80" y1="60" x2="80" y2="490" stroke="#333"/>
+<line x1="80" y1="490.0" x2="770" y2="490.0" stroke="#e6e6e6"/>
+<text x="70.0" y="494.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#222">0</text>
+<line x1="80" y1="404.0" x2="770" y2="404.0" stroke="#e6e6e6"/>
+<text x="70.0" y="408.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#222">44</text>
+<line x1="80" y1="318.0" x2="770" y2="318.0" stroke="#e6e6e6"/>
+<text x="70.0" y="322.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#222">88</text>
+<line x1="80" y1="232.0" x2="770" y2="232.0" stroke="#e6e6e6"/>
+<text x="70.0" y="236.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#222">132</text>
+<line x1="80" y1="146.0" x2="770" y2="146.0" stroke="#e6e6e6"/>
+<text x="70.0" y="150.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#222">175</text>
+<line x1="80" y1="60.0" x2="770" y2="60.0" stroke="#e6e6e6"/>
+<text x="70.0" y="64.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#222">219</text>
+<line x1="80.0" y1="490" x2="80.0" y2="495" stroke="#333"/>
+<text x="80.0" y="512.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#222">2019</text>
+<line x1="195.0" y1="490" x2="195.0" y2="495" stroke="#333"/>
+<text x="195.0" y="512.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#222">2020</text>
+<line x1="310.0" y1="490" x2="310.0" y2="495" stroke="#333"/>
+<text x="310.0" y="512.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#222">2021</text>
+<line x1="425.0" y1="490" x2="425.0" y2="495" stroke="#333"/>
+<text x="425.0" y="512.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#222">2022</text>
+<line x1="540.0" y1="490" x2="540.0" y2="495" stroke="#333"/>
+<text x="540.0" y="512.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#222">2023</text>
+<line x1="655.0" y1="490" x2="655.0" y2="495" stroke="#333"/>
+<text x="655.0" y="512.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#222">2024</text>
+<line x1="770.0" y1="490" x2="770.0" y2="495" stroke="#333"/>
+<text x="770.0" y="512.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#222">2025</text>
+<text x="28.0" y="275.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="middle" fill="#222">Index</text>
+<polyline points="80.0,293.9 195.0,303.3 310.0,309.0 425.0,302.7 540.0,292.7 655.0,294.0 770.0,288.1" fill="none" stroke="#2364aa" stroke-width="2.4"/>
+<line x1="795" y1="85" x2="820" y2="85" stroke="#2364aa" stroke-width="3"/>
+<text x="828.0" y="89.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#222">Singapore All cargo</text>
+<polyline points="80.0,293.9 195.0,306.3 310.0,309.4 425.0,245.4 540.0,224.3 655.0,219.8 770.0,222.5" fill="none" stroke="#3da5d9" stroke-width="2.4" stroke-dasharray="8 5"/>
+<line x1="795" y1="109" x2="820" y2="109" stroke="#3da5d9" stroke-width="3" stroke-dasharray="8 5"/>
+<text x="828.0" y="113.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#222">Malaysia All cargo</text>
+<polyline points="80.0,293.9 195.0,290.8 310.0,284.8 425.0,249.5 540.0,229.7 655.0,232.4 770.0,240.1" fill="none" stroke="#73bfb8" stroke-width="2.4" stroke-dasharray="2 4"/>
+<line x1="795" y1="133" x2="820" y2="133" stroke="#73bfb8" stroke-width="3" stroke-dasharray="2 4"/>
+<text x="828.0" y="137.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#222">Indonesia All cargo</text>
+<polyline points="80.0,293.9 195.0,298.4 310.0,291.5 425.0,286.4 540.0,283.5 655.0,284.2 770.0,289.8" fill="none" stroke="#fec601" stroke-width="2.4" stroke-dasharray="10 4 2 4"/>
+<line x1="795" y1="157" x2="820" y2="157" stroke="#fec601" stroke-width="3" stroke-dasharray="10 4 2 4"/>
+<text x="828.0" y="161.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#222">World All cargo</text>
+<polyline points="80.0,293.9 195.0,296.5 310.0,297.5 425.0,296.7 540.0,289.1 655.0,281.2 770.0,277.6" fill="none" stroke="#ea7317" stroke-width="2.4"/>
+<line x1="795" y1="181" x2="820" y2="181" stroke="#ea7317" stroke-width="3"/>
+<text x="828.0" y="185.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#222">Singapore Tankers</text>
+<polyline points="80.0,293.9 195.0,279.4 310.0,259.0 425.0,152.9 540.0,124.3 655.0,100.8 770.0,91.9" fill="none" stroke="#7d5fff" stroke-width="2.4" stroke-dasharray="8 5"/>
+<line x1="795" y1="205" x2="820" y2="205" stroke="#7d5fff" stroke-width="3" stroke-dasharray="8 5"/>
+<text x="828.0" y="209.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#222">Malaysia Tankers</text>
+<polyline points="80.0,293.9 195.0,292.1 310.0,285.2 425.0,232.5 540.0,214.5 655.0,221.4 770.0,227.1" fill="none" stroke="#5f0f40" stroke-width="2.4" stroke-dasharray="2 4"/>
+<line x1="795" y1="229" x2="820" y2="229" stroke="#5f0f40" stroke-width="3" stroke-dasharray="2 4"/>
+<text x="828.0" y="233.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#222">Indonesia Tankers</text>
+<polyline points="80.0,293.9 195.0,297.7 310.0,288.5 425.0,278.2 540.0,280.1 655.0,279.8 770.0,289.0" fill="none" stroke="#9a031e" stroke-width="2.4" stroke-dasharray="10 4 2 4"/>
+<line x1="795" y1="253" x2="820" y2="253" stroke="#9a031e" stroke-width="3" stroke-dasharray="10 4 2 4"/>
+<text x="828.0" y="257.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#222">World Tankers</text>
+</svg>

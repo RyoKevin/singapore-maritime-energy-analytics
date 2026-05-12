@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="490.0" y="34.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#1f2933">2026Q1 oil-import source reallocation</text>
+<line x1="88" y1="464" x2="770" y2="464" stroke="#334155"/>
+<line x1="88" y1="64" x2="88" y2="464" stroke="#334155"/>
+<line x1="88" y1="464.0" x2="770" y2="464.0" stroke="#e2e8f0"/>
+<text x="78.0" y="468.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">0</text>
+<line x1="88" y1="384.0" x2="770" y2="384.0" stroke="#e2e8f0"/>
+<text x="78.0" y="388.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">7</text>
+<line x1="88" y1="304.0" x2="770" y2="304.0" stroke="#e2e8f0"/>
+<text x="78.0" y="308.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">14</text>
+<line x1="88" y1="224.0" x2="770" y2="224.0" stroke="#e2e8f0"/>
+<text x="78.0" y="228.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">21</text>
+<line x1="88" y1="144.0" x2="770" y2="144.0" stroke="#e2e8f0"/>
+<text x="78.0" y="148.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">27</text>
+<line x1="88" y1="64.0" x2="770" y2="64.0" stroke="#e2e8f0"/>
+<text x="78.0" y="68.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">34</text>
+<text x="28.0" y="264.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="middle" fill="#1f2933">Share (%)</text>
+<rect x="120.2" y="350.8" width="32.0" height="113.2" fill="#2454A6"/>
+<rect x="156.2" y="359.6" width="32.0" height="104.4" fill="#D95F02"/>
+<text x="156.2" y="488.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#1f2933">海湾核心</text>
+<rect x="256.6" y="232.2" width="32.0" height="231.8" fill="#2454A6"/>
+<rect x="292.6" y="116.2" width="32.0" height="347.8" fill="#D95F02"/>
+<text x="292.6" y="488.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#1f2933">Saudi/UAE</text>
+<rect x="393.0" y="218.0" width="32.0" height="246.0" fill="#2454A6"/>
+<rect x="429.0" y="204.6" width="32.0" height="259.4" fill="#D95F02"/>
+<text x="429.0" y="488.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#1f2933">东南亚/澳洲</text>
+<rect x="529.4" y="124.4" width="32.0" height="339.6" fill="#2454A6"/>
+<rect x="565.4" y="154.3" width="32.0" height="309.7" fill="#D95F02"/>
+<text x="565.4" y="488.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#1f2933">亚洲炼化</text>
+<rect x="665.8" y="273.9" width="32.0" height="190.1" fill="#2454A6"/>
+<rect x="701.8" y="400.4" width="32.0" height="63.6" fill="#D95F02"/>
+<text x="701.8" y="488.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#1f2933">美洲</text>
+<rect x="796" y="77" width="16" height="16" fill="#2454A6"/>
+<text x="820.0" y="91.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#1f2933">2025Q1</text>
+<rect x="796" y="101" width="16" height="16" fill="#D95F02"/>
+<text x="820.0" y="115.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#1f2933">2026Q1</text>
+</svg>

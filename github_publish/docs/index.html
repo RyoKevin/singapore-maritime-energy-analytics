@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Singapore Maritime Energy Analytics</title>
+  <style>
+    body { margin: 0; font-family: Arial, "Microsoft YaHei", sans-serif; color: #17202a; background: #f7f9fb; }
+    header { padding: 42px 7vw 28px; background: #102a43; color: white; }
+    main { padding: 28px 7vw 48px; }
+    h1 { margin: 0 0 12px; font-size: 34px; }
+    h2 { margin: 34px 0 12px; font-size: 22px; }
+    p { line-height: 1.65; max-width: 980px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 16px; }
+    .metric { background: white; border: 1px solid #d9e2ec; border-radius: 8px; padding: 16px; }
+    .metric b { display: block; font-size: 24px; margin-bottom: 6px; color: #0b5cad; }
+    figure { margin: 18px 0; padding: 14px; background: white; border: 1px solid #d9e2ec; border-radius: 8px; }
+    img { width: 100%; height: auto; display: block; }
+    a { color: #0b5cad; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Singapore Maritime Energy Analytics</h1>
+    <p>用新加坡官方港口数据、油品进口市场数据、Brent 油价和 PortWatch 日度到港数据，分析港口大船化、燃料转型与伊朗/霍尔木兹风险传导。</p>
+  </header>
+  <main>
+    <section class="grid">
+      <div class="metric"><b>1995-2025</b>长期港口与能源枢纽样本窗口</div>
+      <div class="metric"><b>+485.5%</b>到港船舶总吨位增长</div>
+      <div class="metric"><b>36.0%</b>2025 年油品进口海湾来源份额</div>
+      <div class="metric"><b>38.8%</b>2026Q1 海湾来源份额</div>
+    </section>
+    <h2>核心图表</h2>
+    <figure><img src="assets/singapore_maritime_index.svg" alt="Singapore maritime index"></figure>
+    <figure><img src="assets/bunker_fuel_mix_share.svg" alt="Bunker fuel mix"></figure>
+    <figure><img src="assets/brent_event_comparison.svg" alt="Brent event comparison"></figure>
+    <figure><img src="assets/hormuz_exposure_annual.svg" alt="Hormuz exposure annual"></figure>
+    <figure><img src="assets/q1_2026_gulf_reallocation.svg" alt="Q1 2026 source reallocation"></figure>
+    <h2>报告</h2>
+    <p>主要报告见 <a href="../analysis/output/singapore_maritime_energy_story.md">Singapore maritime energy story</a>、
+    <a href="../analysis/output/twelve_day_vs_2026_comparison.md">事件对比</a> 和
+    <a href="../analysis/output/iran_hormuz_exposure_story.md">霍尔木兹暴露故事</a>。</p>
+  </main>
+</body>
+</html>

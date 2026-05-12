@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="490.0" y="34.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#1f2933">Brent price shock: Twelve-Day War vs 2026 Hormuz crisis</text>
+<line x1="88" y1="464" x2="770" y2="464" stroke="#334155"/>
+<line x1="88" y1="64" x2="88" y2="464" stroke="#334155"/>
+<line x1="88" y1="464.0" x2="770" y2="464.0" stroke="#e2e8f0"/>
+<text x="78.0" y="468.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">0</text>
+<line x1="88" y1="384.0" x2="770" y2="384.0" stroke="#e2e8f0"/>
+<text x="78.0" y="388.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">16</text>
+<line x1="88" y1="304.0" x2="770" y2="304.0" stroke="#e2e8f0"/>
+<text x="78.0" y="308.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">33</text>
+<line x1="88" y1="224.0" x2="770" y2="224.0" stroke="#e2e8f0"/>
+<text x="78.0" y="228.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">49</text>
+<line x1="88" y1="144.0" x2="770" y2="144.0" stroke="#e2e8f0"/>
+<text x="78.0" y="148.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">65</text>
+<line x1="88" y1="64.0" x2="770" y2="64.0" stroke="#e2e8f0"/>
+<text x="78.0" y="68.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#1f2933">81</text>
+<text x="28.0" y="264.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="middle" fill="#1f2933">Change vs own pre-war average (%)</text>
+<rect x="165.7" y="464.0" width="32.0" height="0.0" fill="#2454A6"/>
+<rect x="201.7" y="464.0" width="32.0" height="0.0" fill="#D95F02"/>
+<text x="201.7" y="488.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#1f2933">战前</text>
+<rect x="393.0" y="384.1" width="32.0" height="79.9" fill="#2454A6"/>
+<rect x="429.0" y="217.7" width="32.0" height="246.3" fill="#D95F02"/>
+<text x="429.0" y="488.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#1f2933">事件/冲击</text>
+<rect x="620.3" y="426.4" width="32.0" height="37.6" fill="#2454A6"/>
+<rect x="656.3" y="116.2" width="32.0" height="347.8" fill="#D95F02"/>
+<text x="656.3" y="488.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#1f2933">战后/持续</text>
+<rect x="796" y="77" width="16" height="16" fill="#2454A6"/>
+<text x="820.0" y="91.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#1f2933">2025 十二日战争</text>
+<rect x="796" y="101" width="16" height="16" fill="#D95F02"/>
+<text x="820.0" y="115.0" font-family="Arial, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#1f2933">2026 霍尔木兹危机</text>
+</svg>
