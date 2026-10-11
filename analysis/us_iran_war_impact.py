@@ -275,7 +275,7 @@ def write_report(
             "3. 如果霍尔木兹关闭持续，后续最该跟踪 2026 年 4-6 月的船用燃料销售、油轮到港、低硫燃料/LNG/生物混合燃料份额、以及油品进口来源是否进一步转向非海湾来源。",
         ]
     )
-    (OUT / "us_iran_war_impact.md").write_text("\n".join(lines) + "\n" + "\\n\\n## Interpretation note (October 2026 audit)\\n\\nEvent-window contrasts and quarterly averages are descriptive, without counterfactual identification; Q1 includes pre-event months. See METHODOLOGY.md.\\n", encoding="utf-8")
+    (OUT / "us_iran_war_impact.md").write_text("\n".join(lines) + "\n" + "\n\n## Interpretation note (October 2026 audit)\n\nEvent-window contrasts and quarterly averages are descriptive, without counterfactual identification; Q1 includes pre-event months. See METHODOLOGY.md.\n", encoding="utf-8")
 
 
 def main() -> None:
