@@ -343,7 +343,7 @@ def html_template(payload: dict[str, object]) -> str:
   </main>
 
   <footer>
-    Data sources: Singapore data.gov.sg, Brent price data in the project package, FetchSeries/IMF PortWatch regional context, and EIA Strait of Hormuz background. See <a href="../README.md">README</a> for reproducibility.
+    Data sources: Singapore data.gov.sg, Brent price data in the project package, FetchSeries/IMF PortWatch regional context, and EIA Strait of Hormuz background. See <a href="https://github.com/RyoKevin/singapore-maritime-energy-analytics#readme">README</a> for reproducibility.
   </footer>
 
   <script>
