@@ -18,3 +18,14 @@ jobs:
         run: python -m compileall -q analysis dashboard tests
       - name: Published output checks
         run: python -m unittest discover -s tests -v
+      - name: Package tested source for local replay
+        uses: actions/upload-artifact@v4
+        with:
+          name: maritime-tested-source
+          path: |
+            analysis/
+            dashboard/
+            docs/
+            tests/
+            requirements.txt
+          retention-days: 1
