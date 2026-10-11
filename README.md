@@ -2,7 +2,7 @@
 
 A reproducible **portfolio presentation of published outputs** on Singapore's maritime-energy hub, port growth, bunker-fuel mix and exposure to Gulf supply chains.
 
-**[Interactive data story](docs/interactive.html)** · [Static charts](docs/index.html) · [Data dictionary](DATA_DICTIONARY.md) · [Methodology and limitations](METHODOLOGY.md)
+**[Live interactive data story](https://ryokevin.github.io/singapore-maritime-energy-analytics/)** · [Source HTML](docs/interactive.html) · [Static charts](docs/index.html) · [Data dictionary](DATA_DICTIONARY.md) · [Methodology and limitations](METHODOLOGY.md)
 
 > The repository includes analytical scripts, selected processed CSVs and generated charts. **It does not include the original raw data package**, so the complete pipeline cannot yet be rerun from a fresh clone. The interactive HTML page embeds precomputed data and can be inspected without the raw package. These results represent a May 2026 snapshot, **not live data**.
 
