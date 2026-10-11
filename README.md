@@ -57,9 +57,9 @@ The scripts expect `malacca_strait_data_package/malacca_strait_data_package/data
 python analysis/run_all.py
 ```
 
-The full-pipeline command is provided for users with the original data package; it has **not** been verified from this GitHub checkout.
+**Verified local replay (October 11, 2026):** `python analysis/run_all.py` ran successfully using the matching historical ZIP provided by the project owner. It regenerated 24 CSV outputs, 4 reports, 7 analytical SVG charts, and the interactive HTML page. All 7 CSV tables that were previously committed matched numerically (absolute or relative tolerance 1e-11); SVG graphics matched after normalizing line endings. All 8 unittest checks passed with `MARITIME_SOURCE_ZIP` set. The archive remains outside GitHub, so third-party full replay still requires the original data snapshot.
 
-Data origins reported by the author: Maritime and Port Authority of Singapore and Enterprise Singapore datasets via [data.gov.sg](https://data.gov.sg/); Brent price data from a local FRED-derived CSV; secondary regional port-call workbooks derived from IMF PortWatch/FetchSeries. Dataset-level original download URLs and extraction timestamps still need to be documented.
+Data origins reported by the author: Maritime and Port Authority of Singapore and Enterprise Singapore datasets via [data.gov.sg](https://data.gov.sg/); Brent price data from a local FRED-derived CSV; secondary regional port-call workbooks derived from IMF PortWatch/FetchSeries. Dataset-level original download URLs and extraction timestamps still need to be documented. The verified historical ZIP has SHA-256 `638fcc38db8afc7c394989679ce19fefa996eeb5ab717d9988402a642dd45301`.
 
 ## Scope
 
