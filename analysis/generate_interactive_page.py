@@ -100,7 +100,7 @@ def build_payload() -> dict[str, object]:
 
 
 def html_template(payload: dict[str, object]) -> str:
-    data_json = json.dumps(payload, ensure_ascii=False)
+    payload["scopeNotice"] = "Snapshot through 2026-05-01. Q1 import-origin shifts are descriptive and largely predate the 2026-02-28 event; no causal attribution is claimed."\n    data_json = json.dumps(payload, ensure_ascii=False)
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -337,7 +337,7 @@ def html_template(payload: dict[str, object]) -> str:
         <h2>The new story for a resume.</h2>
         <p class="note">Singapore is a risk redistribution hub. It turns Gulf disruption into source reallocation, bunker fuel cost pressure, and changes in shipping service demand.</p>
       </div>
-      <div class="callout">Resume angle: built an interactive maritime-energy analytics project that quantifies how geopolitical shocks propagate from oil chokepoints into port activity, bunker fuel demand, and Singapore’s import-source structure.</div>
+      <div class="callout">Historical May 2026 data snapshot. Q1 import-origin differences are descriptive and cannot establish a conflict effect.</div>\n      <div class="callout">Resume angle: built an interactive maritime-energy analytics project that quantifies how geopolitical shocks propagate from oil chokepoints into port activity, bunker fuel demand, and Singapore’s import-source structure.</div>
     </section>
   </main>
 

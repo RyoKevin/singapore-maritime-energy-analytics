@@ -65,3 +65,8 @@
 - `analysis/output/iran_hormuz_exposure_q1_yoy.csv`
 - `analysis/output/iran_hormuz_exposure_recent_monthly.csv`
 - `analysis/output/iran_hormuz_gulf_market_detail.csv`
+
+
+## Interpretation note (October 2026 audit)
+
+The 2026Q1 year-over-year changes above are **descriptive import-value composition statistics**, including January and most of February before the February 28 conflict. They cannot establish that the crisis caused the observed rise in Saudi/UAE shares. Value shares can also change as prices change. The June–July 2025 differences likewise do not identify a conflict effect without comparable pre-trend and control-period checks. The country-based Gulf proxy does not measure actual vessel passage through Hormuz. See [METHODOLOGY.md](../../../METHODOLOGY.md).

@@ -53,3 +53,8 @@ FetchSeries/PortWatch 日度到港口径显示，冲击窗口内新加坡全部�
 1. 目前可验证的最大影响是油价和燃料成本冲击，不是 3 月新加坡港口吞吐量立刻下滑。
 2. 新加坡作为全球最大船用燃料补给枢纽，短期可能受益于抢补给、替代补给和风险库存，但持续封锁会推高燃料成本并压低日度到港。
 3. 如果霍尔木兹关闭持续，后续最该跟踪 2026 年 4-6 月的船用燃料销售、油轮到港、低硫燃料/LNG/生物混合燃料份额、以及油品进口来源是否进一步转向非海湾来源。
+
+
+## Interpretation note (October 2026 audit)
+
+The window comparisons are unadjusted descriptive contrasts, not causal effects of either event. The 2026Q1 import, bunker and port aggregates include substantial pre-event observations. See [METHODOLOGY.md](../../../METHODOLOGY.md).
