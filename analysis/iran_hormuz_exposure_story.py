@@ -271,7 +271,7 @@ def write_report(
         "- `analysis/output/iran_hormuz_exposure_recent_monthly.csv`",
         "- `analysis/output/iran_hormuz_gulf_market_detail.csv`",
     ]
-    (OUT / "iran_hormuz_exposure_story.md").write_text("\n".join(lines) + "\n" + "\\n\\n## Interpretation note (October 2026 audit)\\n\\nQ1 values include pre-event months; import-value composition changes do not identify war effects. Trade-partner groups do not measure actual Hormuz transit. See METHODOLOGY.md.\\n", encoding="utf-8")
+    (OUT / "iran_hormuz_exposure_story.md").write_text("\n".join(lines) + "\n" + "\n\n## Interpretation note (October 2026 audit)\n\nQ1 values include pre-event months; import-value composition changes do not identify war effects. Trade-partner groups do not measure actual Hormuz transit. See METHODOLOGY.md.\n", encoding="utf-8")
 
 
 def main() -> None:
