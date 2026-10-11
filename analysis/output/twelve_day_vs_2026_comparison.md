@@ -31,3 +31,8 @@ FetchSeries/PortWatch 日度口径中，十二日战争事件期新加坡全部�
 - `analysis/output/twelve_day_vs_2026_brent_windows.csv`
 - `analysis/output/twelve_day_2025_monthly_metrics.csv`
 - `analysis/output/twelve_day_vs_2026_regional_daily.csv`
+
+
+## Interpretation note (October 2026 audit)
+
+The window comparisons are unadjusted descriptive contrasts, not causal effects of either event. The 2026Q1 import, bunker and port aggregates include substantial pre-event observations. See [METHODOLOGY.md](../../../METHODOLOGY.md).

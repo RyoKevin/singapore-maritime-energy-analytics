@@ -100,6 +100,7 @@ def build_payload() -> dict[str, object]:
 
 
 def html_template(payload: dict[str, object]) -> str:
+    payload["scopeNotice"] = "Snapshot through 2026-05-01. Q1 import-origin shifts are descriptive and largely predate the 2026-02-28 event; no causal attribution is claimed."
     data_json = json.dumps(payload, ensure_ascii=False)
     return f"""<!doctype html>
 <html lang="zh-CN">
@@ -307,7 +308,7 @@ def html_template(payload: dict[str, object]) -> str:
     <section id="shock">
       <div class="section-head">
         <h2>The 2026 Hormuz crisis is a different class of shock.</h2>
-        <p class="note">The 2025 Twelve-Day War raised Brent briefly. The 2026 crisis produced a larger, persistent shock because the channel itself became uncertain.</p>
+        <p class="note">The two periods have different observed Brent price paths. This is a descriptive event-window comparison, not a causal estimate.</p>
       </div>
       <div class="chart-panel"><div id="brentChart" class="chart"></div></div>
     </section>
@@ -323,7 +324,7 @@ def html_template(payload: dict[str, object]) -> str:
 
     <section id="reallocation">
       <div class="section-head">
-        <h2>In 2026Q1, exposure moved toward Saudi/UAE.</h2>
+        <h2>Saudi/UAE made up a larger share of reported oil-import value in 2026Q1.</h2>
         <p class="note">When the shock hit, Singapore did not simply abandon the Gulf. The share from Saudi/UAE rose, while Americas and Asian refinery-trade shares fell.</p>
       </div>
       <div class="split">
@@ -335,9 +336,9 @@ def html_template(payload: dict[str, object]) -> str:
     <section id="takeaway">
       <div class="section-head">
         <h2>The new story for a resume.</h2>
-        <p class="note">Singapore is a risk redistribution hub. It turns Gulf disruption into source reallocation, bunker fuel cost pressure, and changes in shipping service demand.</p>
+        <p class="note">The Q1 source shift was already apparent before February 28: Gulf import-value shares were 37.7% in January and 45.0% in February, then 35.5% in March. Causality is untested.</p>
       </div>
-      <div class="callout">Resume angle: built an interactive maritime-energy analytics project that quantifies how geopolitical shocks propagate from oil chokepoints into port activity, bunker fuel demand, and Singapore’s import-source structure.</div>
+      <div class="callout">Historical May 2026 data snapshot. Q1 import-origin differences are descriptive and cannot establish a conflict effect.</div>\n      <div class="callout">Resume angle: built an interactive maritime-energy analytics project that quantifies how geopolitical shocks propagate from oil chokepoints into port activity, bunker fuel demand, and Singapore’s import-source structure.</div>
     </section>
   </main>
 

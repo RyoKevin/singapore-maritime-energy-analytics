@@ -216,7 +216,7 @@ def make_static_index() -> None:
       <div class="metric"><b>36.0%</b>2025 年油品进口海湾来源份额</div>
       <div class="metric"><b>38.8%</b>2026Q1 海湾来源份额</div>
     </section>
-    <h2>核心图表</h2>
+    <p><strong>Historical May 2026 snapshot.</strong> Q1 source changes are descriptive; do not infer war causality. <a href="../METHODOLOGY.md">Methodology</a>.</p>\n    <h2>核心图表</h2>
     <figure><img src="assets/singapore_maritime_index.svg" alt="Singapore maritime index"></figure>
     <figure><img src="assets/bunker_fuel_mix_share.svg" alt="Bunker fuel mix"></figure>
     <figure><img src="assets/brent_event_comparison.svg" alt="Brent event comparison"></figure>

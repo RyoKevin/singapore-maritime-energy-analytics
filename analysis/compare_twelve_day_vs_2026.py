@@ -219,7 +219,7 @@ def write_report(brent: pd.DataFrame, monthly: pd.DataFrame, regional: pd.DataFr
         "- `analysis/output/twelve_day_2025_monthly_metrics.csv`",
         "- `analysis/output/twelve_day_vs_2026_regional_daily.csv`",
     ]
-    (OUT / "twelve_day_vs_2026_comparison.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (OUT / "twelve_day_vs_2026_comparison.md").write_text("\n".join(lines) + "\n" + "\n\n## Interpretation note (October 2026 audit)\n\nEvent-window contrasts and quarterly averages are descriptive, without counterfactual identification; Q1 includes pre-event months. See METHODOLOGY.md.\n", encoding="utf-8")
 
 
 def main() -> None:
