@@ -22,7 +22,7 @@ malacca_strait_data_package/
 
 Original sources: Singapore MPA and Enterprise Singapore through [data.gov.sg](https://data.gov.sg/); a local FRED-derived Brent daily series; secondary FetchSeries/IMF PortWatch regional vessel-arrival workbooks. These filenames are **local cleaned input contracts**; downloading contemporary files may require column harmonization and will not recreate the historical May 2026 snapshot verbatim. Exact dataset IDs, URLs, extraction dates, and redistribution rights are pending documentation. No data were fabricated to close this gap.
 
-Run selected-output tests using `python -m unittest discover -s tests -v`; run the dashboard using `streamlit run dashboard/app.py`. With matching raw files available, `python analysis/run_all.py` attempts to regenerate outputs. No end-to-end run from a fresh clone is claimed.
+Run selected-output tests using `python -m unittest discover -s tests -v`; run the dashboard using `streamlit run dashboard/app.py`. With matching raw files available, `python analysis/run_all.py` attempts to regenerate outputs. The full `analysis/run_all.py` pipeline was successfully replayed locally on October 11, 2026 with the matching ZIP; public CI runs Python syntax and published-output tests without storing the raw archive. A third party still needs the same historical source snapshot for full reproduction.
 
 ## Verified source archive and reproducibility
 
@@ -36,7 +36,7 @@ python -m unittest discover -s tests -v
 python analysis/run_all.py
 ```
 
-The extraction path is deliberately nested twice and matches the existing scripts. These commands require the runtime dependencies and the matching source snapshot. Recomputing from the complete raw bundle has not been verified by CI.
+The extraction path is deliberately nested twice and matches the existing scripts. These commands require the runtime dependencies and the matching source snapshot. Recomputing from the complete raw bundle was verified locally on October 11, 2026, using Python 3.13; the public CI run validates code syntax and published outputs only. The ZIP SHA-256 is `638fcc38db8afc7c394989679ce19fefa996eeb5ab717d9988402a642dd45301`.
 
 ### Official Singapore dataset IDs recorded in the source package
 
