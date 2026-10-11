@@ -51,7 +51,7 @@ Open `docs/interactive.html` in a browser for the interactive story. To publish 
 
 ## Full source-to-output reproduction (requires missing source files)
 
-The scripts expect `malacca_strait_data_package/malacca_strait_data_package/data/official_data_gov_sg/*.csv` and `malacca_strait_data_package/malacca_strait_data_package/raw/fred_brent_crude_oil.csv` plus `fetchseries_port_calls_by_country_fsr.xlsx`. These files **are not committed**. See [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md) for source descriptions and the expected layout. After obtaining the original matching snapshots:
+The scripts expect `malacca_strait_data_package/malacca_strait_data_package/data/official_data_gov_sg/*.csv` and `malacca_strait_data_package/malacca_strait_data_package/raw/fred_brent_crude_oil.csv` plus `fetchseries_port_calls_by_country_fsr.xlsx`. These files **are not committed**. See [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md) for source descriptions and the expected layout. After obtaining the original matching ZIP snapshot (extract it using the documented commands in [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md)):
 
 ```bash
 python analysis/run_all.py

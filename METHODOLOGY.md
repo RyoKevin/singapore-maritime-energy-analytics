@@ -12,7 +12,7 @@ The import-origin grouping is a **proxy for potential Gulf-related exposure**: K
 - 2026 comparison: pre January 1–February 27; shock February 28–March 31; follow-up April 1–May 1.
 - Brent statistics are unweighted averages of *available daily observations* in each window. These comparisons are sensitive to window selection, broader oil-market conditions and any missing dates.
 - PortWatch/FetchSeries values are descriptive daily port-call indicators and use different definitions from MPA official monthly series. Observed window differences are **not causally identified**.
-- Q1 2026 year-over-year import-origin results cover January–March; only March fully follows the February 28 event onset. Do not label the Q1 composition shift as a *wartime response* without analyzing monthly pre-trends and post-event comparisons.
+- Q1 2026 import-origin results cover January–March; only March fully follows February 28. The raw monthly series shows Gulf-source import-value shares of **37.70% (January), 45.01% (February), and 35.47% (March)**. For 2025 the same months show 26.99%, 30.24%, and 31.72%. Much of the Q1 contrast therefore predates the event. Do not label the Q1 composition shift as a *wartime response*.
 - Import shares are value weighted and can move through **prices, exchange-rate effects, reported origin, or quantities**. The repository does not separate these components.
 - The current published outputs represent a historical May 2026 snapshot.
 

@@ -211,26 +211,27 @@ def write_report(
         "1995 年海湾来源细分：" + gulf_line(1995),
         "2025 年海湾来源细分：" + gulf_line(2025),
         "",
-        "## 证据 3：2026Q1 反而出现“海湾回流”，暴露度短期上升",
+        "## 证据 3：2026Q1 海湾来源金额占比上升，但变化主要出现在冲突前",
         "",
         (
-            f"2025Q1 gulf_total_ex_oman_yemen 份额为 {pct(q1s.loc[2025, 'gulf_total_ex_oman_yemen'])}，"
-            f"2026Q1 升至 {pct(q1s.loc[2026, 'gulf_total_ex_oman_yemen'])}。"
-            f"其中 gulf_with_bypass_capacity 从 {pct(q1s.loc[2025, 'gulf_with_bypass_capacity'])} 升至 "
-            f"{pct(q1s.loc[2026, 'gulf_with_bypass_capacity'])}，同比金额增长 "
-            f"{pct(q1y.loc['gulf_with_bypass_capacity', 'q1_2026_yoy_pct'])}。"
+            f"2025Q1 海湾来源占比为 {pct(q1s.loc[2025, 'gulf_total_ex_oman_yemen'])}，"
+            f"2026Q1 升至 {pct(q1s.loc[2026, 'gulf_total_ex_oman_yemen'])}；"
+            f"Saudi/UAE 组从 {pct(q1s.loc[2025, 'gulf_with_bypass_capacity'])} "
+            f"升至 {pct(q1s.loc[2026, 'gulf_with_bypass_capacity'])}。"
         ),
         (
-            f"这背后主要是 UAE 和 Saudi Arabia 的份额上升。相反，Americas 组金额同比 "
-            f"{pct(q1y.loc['americas', 'q1_2026_yoy_pct'])}，asian_refinery_trade 同比 "
-            f"{pct(q1y.loc['asian_refinery_trade', 'q1_2026_yoy_pct'])}。"
+            "但月度数据表明，这种季度变化不能直接归因于 2026 年 2 月 28 日的冲突："
+            f"2026 年 1 月海湾占比已经为 {pct(recent.loc['2026-01', 'gulf_total_ex_oman_yemen'])}，"
+            f"2 月为 {pct(recent.loc['2026-02', 'gulf_total_ex_oman_yemen'])}，"
+            f"3 月回落到 {pct(recent.loc['2026-03', 'gulf_total_ex_oman_yemen'])}。"
         ),
         (
-            f"所以 2026Q1 的故事不是“新加坡立即摆脱海湾”，而是“总进口额下降 {pct((q1_values.set_index('year').loc[2026, 'total_oil_import_value'] / q1_values.set_index('year').loc[2025, 'total_oil_import_value'] - 1) * 100)}，"
-            "但海湾中带有绕行能力的供应者权重上升”。这是一种战时供应再配置，而不是单纯需求下滑。"
+            f"同期 2026Q1 油品进口总金额同比变化为 "
+            f"{pct((q1_values.set_index('year').loc[2026, 'total_oil_import_value'] / q1_values.set_index('year').loc[2025, 'total_oil_import_value'] - 1) * 100)}。"
+            "数据反映来源金额结构变化；还不能分辨价格、数量与采购时点的贡献。"
         ),
         "",
-        "## 证据 4：十二日战争期间也能看到通道风险的提前反应",
+        "## 证据 4：2025 年夏季海湾来源占比走高",
         "",
         (
             f"2025 年 6 月，也就是十二日战争发生月，gulf_total_ex_oman_yemen 月度份额升至 "
@@ -239,7 +240,7 @@ def write_report(
         ),
         (
             f"相比之下，2025 年 1-3 月该比例只有 {pct(q1s.loc[2025, 'gulf_total_ex_oman_yemen'])}。"
-            "这说明短期军事冲突不一定马上压低新加坡港口活动，但可能先改变油品采购来源和库存行为。"
+            "月度份额存在变化，但缺少对照期和价格数量分解，无法将其归因于冲突或库存行为。"
         ),
         "",
         "## 这条新故事怎么讲",
@@ -251,8 +252,8 @@ def write_report(
         "1. 直接暴露很小：伊朗在新加坡油品进口中的直接份额几乎已经消失。",
         "2. 间接暴露仍大：Saudi、UAE、Qatar、Kuwait 等海湾来源合计仍占 2025 年约三分之一、2026Q1 接近四成。",
         "3. 多元化确实存在：非海湾替代来源长期抬升，说明新加坡不是被单一供应国锁定。",
-        "4. 但多元化不等于免疫：当霍尔木兹被扰动时，有绕行能力的海湾供应者权重反而上升，说明市场会转向“更可靠的海湾出口节点”，而不是完全离开海湾。",
-        "5. 因此，新加坡的角色是风险再分配枢纽：它把海湾冲击转化为油品来源再配置、燃料成本上升和船舶补给行为变化。",
+        "4. 海湾风险仍值得关注：长期来源多元化并未消除海湾来源占比；现有数据尚未识别战时转向。",
+        "5. 研究假说是通道风险可能通过采购来源、燃料价格与船舶补给传导；需要进一步数据验证传导机制。",
         "",
         "## 外部事实支撑",
         "",

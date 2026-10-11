@@ -23,3 +23,31 @@ malacca_strait_data_package/
 Original sources: Singapore MPA and Enterprise Singapore through [data.gov.sg](https://data.gov.sg/); a local FRED-derived Brent daily series; secondary FetchSeries/IMF PortWatch regional vessel-arrival workbooks. These filenames are **local cleaned input contracts**; downloading contemporary files may require column harmonization and will not recreate the historical May 2026 snapshot verbatim. Exact dataset IDs, URLs, extraction dates, and redistribution rights are pending documentation. No data were fabricated to close this gap.
 
 Run selected-output tests using `python -m unittest discover -s tests -v`; run the dashboard using `streamlit run dashboard/app.py`. With matching raw files available, `python analysis/run_all.py` attempts to regenerate outputs. No end-to-end run from a fresh clone is claimed.
+
+## Verified source archive and reproducibility
+
+The original matching source snapshot was provided separately as `malacca_strait_data_package.zip` (64,405,809 bytes); the ZIP integrity check passed, and all seven expected official Singapore CSVs, the Brent CSV and the relevant PortWatch/FetchSeries workbook are present. The ZIP is **not** checked into this public repository.
+
+To use it, place the ZIP in the repository root and run:
+
+```bash
+python -m zipfile -e malacca_strait_data_package.zip .
+python -m unittest discover -s tests -v
+python analysis/run_all.py
+```
+
+The extraction path is deliberately nested twice and matches the existing scripts. These commands require the runtime dependencies and the matching source snapshot. Recomputing from the complete raw bundle has not been verified by CI.
+
+### Official Singapore dataset IDs recorded in the source package
+
+| Cleaned filename (without .csv) | data.gov.sg dataset ID |
+|---|---|
+| cargo_throughput_total_monthly | d_042dd8b935eab998f389adaf559c80de |
+| container_throughput_monthly | d_da030f7028200d19ffcbe4a2d71af39c |
+| vessel_calls_75gt_monthly | d_48cb38d12697d3463c8cadfb22e6c61d |
+| tanker_arrivals_total_monthly | d_9adb5ace517591edd9a8c88291ac1f1c |
+| bunker_sales_total_monthly | d_89d2874dad74a273270369334f1e7d28 |
+| bunker_sales_breakdown_monthly | d_4f5abbf4486bf8e52bbed3be56dde562 |
+| merchandise_imports_oil_by_market_monthly | d_d8436b391529c6be9da001ffc7f19e51 |
+
+The source archive also provides `scripts/download_data.py`, which references data.gov.sg's download APIs, FRED, and FetchSeries/PortWatch links. Fresh downloads may differ from this historical snapshot; in particular, the downloader does not automatically create the exact local `fred_brent_crude_oil.csv` schema used here.
